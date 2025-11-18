@@ -1,4 +1,12 @@
-function Result({ postId, filters, isVegeta = false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
+function generateIndicator(value, string) {
+  if (value === true) {
+    return `${string}:✅ `;
+  } else {
+    return `${string}:❌ `;
+  }
+}
+
+function Result({ postId, title, content, filters, isVegeta = false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
   const {vegeta, vegan, glutenfree, lactosefree} = filters;
 
   const shouldShow = (!( // Mega ick
@@ -6,8 +14,7 @@ function Result({ postId, filters, isVegeta = false, isVegan=false, isGlutenfree
     (!isVegan && vegan) ||
     (!isGlutenfree && glutenfree) ||
     (!isLactosefree && lactosefree)
-  ))
-  console.log(`${postId}: ${shouldShow}`)
+  ));
 
   if (!shouldShow) {
     return;
@@ -15,19 +22,35 @@ function Result({ postId, filters, isVegeta = false, isVegan=false, isGlutenfree
 
   return (
     <div>
-      {/* TODO: Implement this */}
-      {`Result for post ${postId}`}
+      <hr/>
+      <h2>{title}</h2>
+      <div>
+        {generateIndicator(isVegeta, 'Vegetarian')}
+        {generateIndicator(isVegan, 'Vegan')}
+        {generateIndicator(isGlutenfree, 'Gluten Free')}
+        {generateIndicator(isLactosefree, 'Lactose Free')}
+      </div>
+      <p className="respect-newlines">
+        {content}
+      </p>
     </div>
   );
 }
 
-export function SearchResults({ filters }) {
+export function SearchResults({ resultData, filters }) {
   return (
     <div>
-      <Result postId={1} isVegeta={true} isVegan={true} filters={filters} />
-      <Result postId={2} isVegan={true} filters={filters} />
-      <Result postId={3} isGlutenfree={true} filters={filters} />
-      <Result postId={4} isLactosefree={true} filters={filters} />
+      {resultData.map((result) => {
+        return <Result
+                 postId={result.id}
+                 title={result.title}
+                 content={result.content}
+                 isVegeta={result.isVegeta}
+                 isVegan={result.isVegan}
+                 isGlutenfree={result.isGlutenfree}
+                 isLactosefree={result.isLactosefree}
+                 filters={filters} />;
+      })}
     </div>
   );
 }

@@ -78,3 +78,7 @@ label {
     user-select: none; /* Prevents text selection */
     -webkit-user-select: none; /* For Safari */
 }
+
+.respect-newlines {
+  white-space: pre-line;
+}
