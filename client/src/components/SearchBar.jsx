@@ -13,7 +13,7 @@ export function SearchBar({ setQuery }) {
     <>
       <form action={submitSearch}>
         <input name="content" />
-        <button type="submit">Send</button>
+        <button type="submit">🔍</button>
       </form>
     </>
   );
