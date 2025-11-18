@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-export function SearchBar() {
+export function SearchBar({ setQuery }) {
   const navigate = useNavigate();
 
   async function submitSearch(formData) {
     const content = formData.get('content');
     navigate(`/search?q=${content}`);
+    setQuery(content);
   }
 
   return (

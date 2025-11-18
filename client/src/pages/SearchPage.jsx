@@ -5,12 +5,15 @@ import { SearchFilters } from '../components/SearchFilters.jsx'
 import { SearchResults } from '../components/SearchResults.jsx'
 
 export function SearchPage() {
+  const urlParams = new URLSearchParams(window.location.search)
+
+  const [query, setQuery] = useState(urlParams.get('q'))
   const [filters, setFilters] = useState({})
 
   return (
       <>
-        <h2>Search</h2>
-        <SearchBar />
+        <h2>"{query}" Search Results</h2>
+        <SearchBar setQuery={setQuery} />
         <SearchFilters setFilters={setFilters} />
         <SearchResults resultData={resultData} filters={filters} />
       </>
