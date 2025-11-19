@@ -6,14 +6,14 @@ function generateIndicator(value, string) {
   }
 }
 
-function Result({ postId, title, content, filters, isVegeta = false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
-  const {vegeta, vegan, glutenfree, lactosefree} = filters;
+function Result({ postId, title, ingredients, content, filters, isVegeta=false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
+  const {filterVegeta, filterVegan, filterGlutenfree, filterLactosefree} = filters;
 
-  const shouldShow = (!( // Mega ick
-    (!isVegeta && vegeta) ||
-    (!isVegan && vegan) ||
-    (!isGlutenfree && glutenfree) ||
-    (!isLactosefree && lactosefree)
+  const shouldShow = (!( // TW: Gross but necessary boolean spaghetti
+    (!isVegeta && filterVegeta) ||
+    (!isVegan && filterVegan) ||
+    (!isGlutenfree && filterGlutenfree) ||
+    (!isLactosefree && filterLactosefree)
   ));
 
   if (!shouldShow) {
@@ -30,6 +30,11 @@ function Result({ postId, title, content, filters, isVegeta = false, isVegan=fal
         {generateIndicator(isGlutenfree, 'Gluten Free')}
         {generateIndicator(isLactosefree, 'Lactose Free')}
       </div>
+      <h3>Ingredients</h3>
+      <p className="respect-newlines">
+        {ingredients}
+      </p>
+      <h3>Instructions</h3>
       <p className="respect-newlines">
         {content}
       </p>
@@ -44,11 +49,12 @@ export function SearchResults({ resultData, filters }) {
         return <Result
                  postId={result.id}
                  title={result.title}
+                 ingredients={result.ingredients}
                  content={result.content}
-                 isVegeta={result.isVegeta}
-                 isVegan={result.isVegan}
-                 isGlutenfree={result.isGlutenfree}
-                 isLactosefree={result.isLactosefree}
+                 isVegeta={result.isvegeta}
+                 isVegan={result.isvegan}
+                 isGlutenfree={result.isglutenfree}
+                 isLactosefree={result.islactosefree}
                  filters={filters} />;
       })}
     </div>

@@ -8,10 +8,10 @@ export function SearchFilters({ setFilters }) {
     const lactosefree = form.elements['filter-lactosefree'].checked;
 
     setFilters({
-      vegeta: vegeta,
-      vegan: vegan,
-      glutenfree: glutenfree,
-      lactosefree: lactosefree
+      filterVegeta: vegeta,
+      filterVegan: vegan,
+      filterGlutenfree: glutenfree,
+      filterLactosefree: lactosefree
     })
   }
 
