@@ -50,9 +50,17 @@ app.post("/create", express.json(), async function (request, response) {
   response.json(SUCCESS_MESSAGE);
 });
 
-app.get("/queryposts", express.json(), async function (request, response) {
-  const postData = await db.query("SELECT * FROM posts ORDER BY id DESC");
+async function queryPosts(query, response) {
+  const postData = await db.query(`SELECT * FROM posts WHERE title ILIKE CONCAT(\'%\', $1::text, \'%\') ORDER BY id DESC`, [query]);
   response.json(postData.rows);
+}
+
+app.get("/queryposts/", express.json(), async function (request, response) {
+  queryPosts('', response);
+});
+
+app.get("/queryposts/:query", express.json(), async function (request, response) {
+  queryPosts(request.params.query, response);
 });
 
 app.listen(3000, function () {
