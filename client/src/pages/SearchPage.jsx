@@ -22,7 +22,7 @@ export function SearchPage() {
       setPostData(data);
     }
     fetchData()
-  }, [postData]);
+  }, [query]);
 
   return (
       <>
