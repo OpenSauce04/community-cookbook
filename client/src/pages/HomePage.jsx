@@ -1,6 +1,6 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
-import { SearchBar } from '../components/SearchBar.jsx'
+import { SearchBar } from '../components/SearchBar.jsx';
 
 export function HomePage() {
   return (
@@ -12,5 +12,5 @@ export function HomePage() {
           <Link to='/create'>Create Post</Link>
         </button>
       </>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_URL = "http://localhost:3000"
+import { API_URL } from '../values.js';
 
 function generateIndicator(value, string) {
   if (value === true) {
@@ -23,7 +23,7 @@ function Result({ postId, userId, title, ingredients, content, filters, isVegeta
       const data = await response.json();
       setUsername(data);
     }
-    fetchData()
+    fetchData();
   }, []);
 
   const shouldShow = (!( // TW: Gross but necessary boolean spaghetti
@@ -67,7 +67,7 @@ export function SearchResults({ resultData, filters }) {
         <hr/>
         <p>No results.</p>
       </>
-    )
+    );
   }
 
   return (

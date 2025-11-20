@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-import { SearchBar } from '../components/SearchBar.jsx'
-import { SearchFilters } from '../components/SearchFilters.jsx'
-import { SearchResults } from '../components/SearchResults.jsx'
+import { SearchBar } from '../components/SearchBar.jsx';
+import { SearchFilters } from '../components/SearchFilters.jsx';
+import { SearchResults } from '../components/SearchResults.jsx';
 
-const API_URL = "http://localhost:3000"
+import { API_URL } from '../values.js';
 
 export function SearchPage() {
-  const urlParams = new URLSearchParams(window.location.search)
+  const urlParams = new URLSearchParams(window.location.search);
 
-  const [query, setQuery] = useState(urlParams.get('q'))
-  const [postData, setPostData] = useState([])
-  const [filters, setFilters] = useState({})
+  const [query, setQuery] = useState(urlParams.get('q'));
+  const [postData, setPostData] = useState([]);
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +21,7 @@ export function SearchPage() {
       const data = await response.json();
       setPostData(data);
     }
-    fetchData()
+    fetchData();
   }, [query]);
 
   return (

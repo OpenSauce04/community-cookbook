@@ -6,7 +6,7 @@ import { HomePage } from './pages/HomePage.jsx';
 import { SearchPage } from './pages/SearchPage.jsx';
 import { CreatePage } from './pages/CreatePage.jsx';
 
-const API_URL = "http://localhost:3000"
+import { API_URL } from './values.js';
 
 export default function App() {
   const [username, setUsername] = useState('')

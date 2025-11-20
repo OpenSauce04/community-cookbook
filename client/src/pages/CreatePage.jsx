@@ -1,23 +1,21 @@
-import { Link } from "react-router";
 import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react'
 
-const API_URL = "http://localhost:3000"
-const CHECK_ON = 'on'
+import { API_URL, CHECK_ON } from '../values.js';
 
 export function CreatePage() {
   const { userId } = useAuth();
 
   async function submitPost(formData) {
-    const title = formData.get('title')
-    const content = formData.get('content')
-    const ingredients = formData.get('ingredients')
-    const vegeta = (formData.get('vegeta') == CHECK_ON)
-    const vegan = (formData.get('vegan') == CHECK_ON)
-    const glutenfree = (formData.get('glutenfree') == CHECK_ON)
-    const lactosefree = (formData.get('lactosefree') == CHECK_ON)
+    const title = formData.get('title');
+    const content = formData.get('content');
+    const ingredients = formData.get('ingredients');
+    const vegeta = (formData.get('vegeta') == CHECK_ON);
+    const vegan = (formData.get('vegan') == CHECK_ON);
+    const glutenfree = (formData.get('glutenfree') == CHECK_ON);
+    const lactosefree = (formData.get('lactosefree') == CHECK_ON);
 
     fetch(`${API_URL}/create`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -60,5 +58,5 @@ export function CreatePage() {
           </form>
         </SignedIn>
       </>
-  )
+  );
 }

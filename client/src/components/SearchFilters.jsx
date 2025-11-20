@@ -12,7 +12,7 @@ export function SearchFilters({ setFilters }) {
       filterVegan: vegan,
       filterGlutenfree: glutenfree,
       filterLactosefree: lactosefree
-    })
+    });
   }
 
   return (
@@ -24,5 +24,5 @@ export function SearchFilters({ setFilters }) {
         <label> |<input id="filter-lactosefree" type="checkbox" onChange={updateFilters} /> Lactose Free</label>
       </form>
     </>
-  )
+  );
 }
