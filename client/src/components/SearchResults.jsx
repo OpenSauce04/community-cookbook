@@ -47,6 +47,7 @@ export function SearchResults({ resultData, filters }) {
     <div>
       {resultData.map((result) => {
         return <Result
+                 key={result.id}
                  postId={result.id}
                  title={result.title}
                  ingredients={result.ingredients}
