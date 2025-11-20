@@ -1,68 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { API_URL } from '../values.js';
-
-function generateIndicator(value, string) {
-  if (value === true) {
-    return <>
-             {string}:<span style={{color: 'green'}}>✓</span>
-           </>;
-  } else {
-    return <>
-             {string}:<span style={{color: 'red'}}>✗</span>
-           </>;
-  }
-}
-
-function Result({ postId, userId, title, ingredients, content, filters, isVegeta=false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
-  const [username, setUsername] = useState([])
-
-  const {filterVegeta, filterVegan, filterGlutenfree, filterLactosefree} = filters;
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `${API_URL}/usernamefromid/${userId}`
-      );
-      const data = await response.json();
-      setUsername(data);
-    }
-    fetchData();
-  }, []);
-
-  const shouldShow = (!( // TW: Gross but necessary boolean spaghetti
-    (!isVegeta && filterVegeta) ||
-    (!isVegan && filterVegan) ||
-    (!isGlutenfree && filterGlutenfree) ||
-    (!isLactosefree && filterLactosefree)
-  ));
-
-  if (!shouldShow) {
-    return;
-  }
-
-  return (
-    <div>
-      <hr/>
-      <h2>{title}</h2>
-      <h4>By {username}</h4>
-      <div>
-        {generateIndicator(isVegeta, 'Vegetarian')}{' / '}
-        {generateIndicator(isVegan, 'Vegan')}{' / '}
-        {generateIndicator(isGlutenfree, 'Gluten Free')}{' / '}
-        {generateIndicator(isLactosefree, 'Lactose Free')}
-      </div>
-      <h3>Ingredients</h3>
-      <p className="respect-newlines">
-        {ingredients}
-      </p>
-      <h3>Instructions</h3>
-      <p className="respect-newlines">
-        {content}
-      </p>
-    </div>
-  );
-}
+import { Post } from './Post.jsx';
 
 export function SearchResults({ resultData, filters }) {
   if (resultData.length == 0) {
@@ -77,7 +15,7 @@ export function SearchResults({ resultData, filters }) {
   return (
     <div>
       {resultData.map((result) => {
-        return <Result
+        return <Post
                  key={result.id}
                  postId={result.id}
                  userId={result.userid}
