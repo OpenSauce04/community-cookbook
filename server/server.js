@@ -56,7 +56,11 @@ app.get("/post/:id", express.json(), async function (request, response) {
 });
 
 async function queryPosts(query, response) {
-  const postData = await db.query(`SELECT * FROM posts WHERE title ILIKE CONCAT(\'%\', $1::text, \'%\') ORDER BY id DESC`, [query]);
+  const postData = await db.query(`SELECT * FROM posts \
+WHERE title ILIKE CONCAT(\'%\', $1::text, \'%\') \
+OR ingredients ILIKE CONCAT(\'%\', $1::text, \'%\') \
+OR content ILIKE CONCAT(\'%\', $1::text, \'%\') \
+ORDER BY id DESC`, [query]);
   response.json(postData.rows);
 }
 
