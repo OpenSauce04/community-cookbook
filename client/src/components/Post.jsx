@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 import { API_URL } from '../values.js';
 
@@ -14,8 +15,19 @@ function generateIndicator(value, string) {
   }
 }
 
-export function Post({ postId, userId, title, ingredients, content, filters, isVegeta=false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
-  const [username, setUsername] = useState([])
+export function Post({
+    postId,
+    userId,
+    title,
+    ingredients,
+    content,
+    filters={filterVegeta: false, filterVegan: false, filterGlutenfree: false, filterLactosefree: false},
+    isVegeta=false,
+    isVegan=false,
+    isGlutenfree=false,
+    isLactosefree=false
+}) {
+  const [username, setUsername] = useState('')
 
   const {filterVegeta, filterVegan, filterGlutenfree, filterLactosefree} = filters;
 
@@ -28,7 +40,7 @@ export function Post({ postId, userId, title, ingredients, content, filters, isV
       setUsername(data);
     }
     fetchData();
-  }, []);
+  }, [userId]);
 
   const shouldShow = (!( // TW: Gross but necessary boolean spaghetti
     (!isVegeta && filterVegeta) ||
@@ -43,8 +55,9 @@ export function Post({ postId, userId, title, ingredients, content, filters, isV
 
   return (
     <div>
-      <hr/>
-      <h2>{title}</h2>
+      <Link to={`/post/${postId}`}>
+        <h2>{title}</h2>
+      </Link>
       <h4>By {username}</h4>
       <div>
         {generateIndicator(isVegeta, 'Vegetarian')}{' / '}
@@ -60,6 +73,7 @@ export function Post({ postId, userId, title, ingredients, content, filters, isV
       <p className="respect-newlines">
         {content}
       </p>
+      <hr/>
     </div>
   );
 }

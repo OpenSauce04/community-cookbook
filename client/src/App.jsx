@@ -5,6 +5,7 @@ import { SignedIn, SignedOut, SignInButton, SignOutButton, useAuth } from '@cler
 import { HomePage } from './pages/HomePage.jsx';
 import { SearchPage } from './pages/SearchPage.jsx';
 import { CreatePage } from './pages/CreatePage.jsx';
+import { PostPage } from './pages/PostPage.jsx';
 
 import { API_URL } from './values.js';
 
@@ -46,6 +47,7 @@ export default function App() {
         <Route path='/' element={ <HomePage /> } />
         <Route path='/search' element={ <SearchPage /> } />
         <Route path='/create' element={ <CreatePage /> } />
+        <Route path='/post/:id' element={ <PostPage /> } />
       </Routes>
     </BrowserRouter>
   )

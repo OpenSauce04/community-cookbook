@@ -29,6 +29,7 @@ export function SearchPage() {
         <h2>Search Results for "{query}"</h2>
         <SearchBar setQuery={setQuery} />
         <SearchFilters setFilters={setFilters} />
+        <hr/>
         <SearchResults resultData={postData} filters={filters} />
       </>
   )

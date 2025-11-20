@@ -6,7 +6,6 @@ export function SearchResults({ resultData, filters }) {
   if (resultData.length == 0) {
     return (
       <>
-        <hr/>
         <p>No results.</p>
       </>
     );

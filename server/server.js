@@ -50,6 +50,11 @@ app.post("/create", express.json(), async function (request, response) {
   response.json(SUCCESS_MESSAGE);
 });
 
+app.get("/post/:id", express.json(), async function (request, response) {
+  const postData = await db.query(`SELECT * FROM posts WHERE id = $1`, [request.params.id]);
+  response.json(postData.rows[0]);
+});
+
 async function queryPosts(query, response) {
   const postData = await db.query(`SELECT * FROM posts WHERE title ILIKE CONCAT(\'%\', $1::text, \'%\') ORDER BY id DESC`, [query]);
   response.json(postData.rows);
