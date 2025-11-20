@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+
+const API_URL = "http://localhost:3000"
+
 function generateIndicator(value, string) {
   if (value === true) {
     return `${string}:✅ `;
@@ -6,8 +10,21 @@ function generateIndicator(value, string) {
   }
 }
 
-function Result({ postId, title, ingredients, content, filters, isVegeta=false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
+function Result({ postId, userId, title, ingredients, content, filters, isVegeta=false, isVegan=false, isGlutenfree=false, isLactosefree=false }) {
+  const [username, setUsername] = useState([])
+
   const {filterVegeta, filterVegan, filterGlutenfree, filterLactosefree} = filters;
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `${API_URL}/usernamefromid/${userId}`
+      );
+      const data = await response.json();
+      setUsername(data);
+    }
+    fetchData()
+  }, []);
 
   const shouldShow = (!( // TW: Gross but necessary boolean spaghetti
     (!isVegeta && filterVegeta) ||
@@ -24,6 +41,7 @@ function Result({ postId, title, ingredients, content, filters, isVegeta=false, 
     <div>
       <hr/>
       <h2>{title}</h2>
+      <h4>By {username}</h4>
       <div>
         {generateIndicator(isVegeta, 'Vegetarian')}
         {generateIndicator(isVegan, 'Vegan')}
@@ -49,6 +67,7 @@ export function SearchResults({ resultData, filters }) {
         return <Result
                  key={result.id}
                  postId={result.id}
+                 userId={result.userid}
                  title={result.title}
                  ingredients={result.ingredients}
                  content={result.content}

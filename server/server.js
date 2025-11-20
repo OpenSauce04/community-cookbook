@@ -63,6 +63,11 @@ app.get("/queryposts/:query", express.json(), async function (request, response)
   queryPosts(request.params.query, response);
 });
 
+app.get("/usernamefromid/:id", async function (request, response) {
+  const userData = await db.query(`SELECT username FROM users WHERE id=$1`, [request.params.id])
+  response.json(userData.rows[0].username);
+});
+
 app.listen(3000, function () {
   console.log("Server is listening on port 3000...");
 });
