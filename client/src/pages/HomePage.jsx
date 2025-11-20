@@ -5,8 +5,12 @@ import { SearchBar } from '../components/SearchBar.jsx'
 export function HomePage() {
   return (
       <>
+        <h2>Find Recipes</h2>
         <SearchBar />
-        <Link to='/create'>New Post</Link>
+        <h2>Share New Recipe</h2>
+        <button>
+          <Link to='/create'>Create Post</Link>
+        </button>
       </>
   )
 }

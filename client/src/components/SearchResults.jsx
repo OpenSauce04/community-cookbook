@@ -61,6 +61,15 @@ function Result({ postId, userId, title, ingredients, content, filters, isVegeta
 }
 
 export function SearchResults({ resultData, filters }) {
+  if (resultData.length == 0) {
+    return (
+      <>
+        <hr/>
+        <p>No results.</p>
+      </>
+    )
+  }
+
   return (
     <div>
       {resultData.map((result) => {

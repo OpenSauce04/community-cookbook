@@ -26,7 +26,7 @@ export function SearchPage() {
 
   return (
       <>
-        <h2>"{query}" Search Results</h2>
+        <h2>Search Results for "{query}"</h2>
         <SearchBar setQuery={setQuery} />
         <SearchFilters setFilters={setFilters} />
         <SearchResults resultData={postData} filters={filters} />
