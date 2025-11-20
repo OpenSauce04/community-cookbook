@@ -4,9 +4,13 @@ import { API_URL } from '../values.js';
 
 function generateIndicator(value, string) {
   if (value === true) {
-    return `${string}:✅ `;
+    return <>
+             {string}:<span style={{color: 'green'}}>✓</span>
+           </>;
   } else {
-    return `${string}:❌ `;
+    return <>
+             {string}:<span style={{color: 'red'}}>✗</span>
+           </>;
   }
 }
 
@@ -43,9 +47,9 @@ function Result({ postId, userId, title, ingredients, content, filters, isVegeta
       <h2>{title}</h2>
       <h4>By {username}</h4>
       <div>
-        {generateIndicator(isVegeta, 'Vegetarian')}
-        {generateIndicator(isVegan, 'Vegan')}
-        {generateIndicator(isGlutenfree, 'Gluten Free')}
+        {generateIndicator(isVegeta, 'Vegetarian')}{' / '}
+        {generateIndicator(isVegan, 'Vegan')}{' / '}
+        {generateIndicator(isGlutenfree, 'Gluten Free')}{' / '}
         {generateIndicator(isLactosefree, 'Lactose Free')}
       </div>
       <h3>Ingredients</h3>
