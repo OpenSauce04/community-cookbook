@@ -10,7 +10,7 @@ export function SearchPage() {
   const urlParams = new URLSearchParams(window.location.search);
 
   const [query, setQuery] = useState(urlParams.get('q'));
-  const [postData, setPostData] = useState([]);
+  const [postData, setPostData] = useState(-1); // -1 indicates that the page is laoding
   const [filters, setFilters] = useState({});
 
   useEffect(() => {

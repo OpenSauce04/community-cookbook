@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import { Post } from './Post.jsx';
 
 export function SearchResults({ resultData, filters }) {
+  if (resultData == -1) {
+    return;
+  }
+
   if (resultData.length == 0) {
     return (
       <>
