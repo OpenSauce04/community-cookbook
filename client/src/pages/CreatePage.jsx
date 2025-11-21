@@ -42,11 +42,11 @@ export function CreatePage() {
             <h2>New Post</h2>
             <div>
               Title:<br/>
-              <input name="title" /><br/>
+              <input name="title" size="40" /><br/>
               Ingredients:<br/>
-              <textarea name="ingredients" /><br/>
+              <textarea rows="10" cols="50" name="ingredients" /><br/>
               Content:<br/>
-              <textarea name="content" /><br/>
+              <textarea rows="10" cols="50" name="content" /><br/>
               Dietary notes:<br/>
               <label><input name="vegeta" type="checkbox" /> Vegetarian</label>
               <label> |<input name="vegan" type="checkbox" /> Vegan</label>
