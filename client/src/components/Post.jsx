@@ -34,7 +34,7 @@ export function Post({
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `${API_URL}/usernamefromid/${userId}`
+        `${API_URL}/user/namefromid/${userId}`
       );
       const data = await response.json();
       setUsername(data);

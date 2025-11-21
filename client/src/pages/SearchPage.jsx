@@ -16,7 +16,7 @@ export function SearchPage() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `${API_URL}/queryposts/${query}`
+        `${API_URL}/post/query/${query}`
       );
       const data = await response.json();
       setPostData(data);

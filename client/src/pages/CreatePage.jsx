@@ -14,7 +14,7 @@ export function CreatePage() {
     const glutenfree = (formData.get('glutenfree') == CHECK_ON);
     const lactosefree = (formData.get('lactosefree') == CHECK_ON);
 
-    fetch(`${API_URL}/create`, {
+    fetch(`${API_URL}/post/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

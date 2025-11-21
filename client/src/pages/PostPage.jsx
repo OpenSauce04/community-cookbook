@@ -12,7 +12,7 @@ export function PostPage() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `${API_URL}/post/${id}`
+        `${API_URL}/post/get/${id}`
       );
       const data = await response.json();
       setPostData(data);

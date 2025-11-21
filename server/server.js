@@ -32,7 +32,7 @@ app.get("/test", express.json(), async function (request, response) {
   response.json(SUCCESS_MESSAGE);
 });
 
-app.post("/create", express.json(), async function (request, response) {
+app.post("/post/create", express.json(), async function (request, response) {
   const data = request.body;
 
   await fetchClerkUserData(data.userid);
@@ -50,7 +50,7 @@ app.post("/create", express.json(), async function (request, response) {
   response.json(SUCCESS_MESSAGE);
 });
 
-app.get("/post/:id", express.json(), async function (request, response) {
+app.get("/post/get/:id", express.json(), async function (request, response) {
   const postData = await db.query(`SELECT * FROM posts WHERE id = $1`, [request.params.id]);
   response.json(postData.rows[0]);
 });
@@ -64,15 +64,15 @@ ORDER BY id DESC`, [query]);
   response.json(postData.rows);
 }
 
-app.get("/queryposts/", express.json(), async function (request, response) {
+app.get("/post/query", express.json(), async function (request, response) {
   queryPosts('', response);
 });
 
-app.get("/queryposts/:query", express.json(), async function (request, response) {
+app.get("/post/query/:query", express.json(), async function (request, response) {
   queryPosts(request.params.query, response);
 });
 
-app.get("/usernamefromid/:id", async function (request, response) {
+app.get("/user/namefromid/:id", async function (request, response) {
   const userData = await db.query(`SELECT username FROM users WHERE id=$1`, [request.params.id])
   response.json(userData.rows[0].username);
 });
