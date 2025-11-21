@@ -31,7 +31,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <h1>
-        <Link to='/'>Community Cookbook</Link>
+        <Link to='/' style={{color: 'black'}}><b>Community Cookbook</b></Link>
       </h1>
       <SignedOut>
         <SignInButton />
